@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Thailand Trip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon-deep:#6E1423;
+  --maroon-mid:#4A0F1C;
+  --maroon-night:#230811;
+  --red-signal:#E63946;
+  --red-error:#A11A2B;
+  --grey-warm:#5B534F;
+  --ink:#241016;
+  --white:#FFFFFF;
+  --success:#2A9D6F;
+  --font-display:'Instrument Serif', Georgia, serif;
+  --font-body:'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  position:relative;
+  min-height:100vh;
+  overflow-x:hidden;
+  font-family:var(--font-body);
+  background-color:var(--maroon-night);
+}
+
+.bg-photo{position:fixed;inset:0;z-index:0;overflow:hidden;background:var(--maroon-night);}
+.bg-photo img{width:100%;height:100%;object-fit:cover;object-position:center 65%;display:block;}
+.bg-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(74,15,28,.30) 0%, rgba(35,8,17,.45) 45%, rgba(20,4,9,.75) 100%);
+}
+
+/* celebratory confetti, one burst on load */
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
+.confetti span{position:absolute;top:-8%;width:7px;height:13px;opacity:0;border-radius:1px;animation:confettiFall 3.4s ease-in forwards;}
+@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg);opacity:1;}85%{opacity:1;}100%{transform:translateY(72vh) rotate(340deg);opacity:0;}}
+.confetti span:nth-child(1){left:6%;background:var(--red-signal);animation-delay:.10s;}
+.confetti span:nth-child(2){left:14%;background:var(--white);animation-delay:.50s;}
+.confetti span:nth-child(3){left:22%;background:var(--grey-warm);animation-delay:.15s;}
+.confetti span:nth-child(4){left:30%;background:var(--white);animation-delay:.65s;}
+.confetti span:nth-child(5){left:38%;background:var(--red-signal);animation-delay:.30s;}
+.confetti span:nth-child(6){left:46%;background:var(--white);animation-delay:.05s;}
+.confetti span:nth-child(7){left:54%;background:var(--grey-warm);animation-delay:.45s;}
+.confetti span:nth-child(8){left:62%;background:var(--white);animation-delay:.20s;}
+.confetti span:nth-child(9){left:70%;background:var(--red-signal);animation-delay:.55s;}
+.confetti span:nth-child(10){left:78%;background:var(--white);animation-delay:.35s;}
+.confetti span:nth-child(11){left:86%;background:var(--grey-warm);animation-delay:.10s;}
+.confetti span:nth-child(12){left:94%;background:var(--white);animation-delay:.50s;}
+.confetti span:nth-child(13){left:50%;background:var(--red-signal);animation-delay:.60s;}
+.confetti span:nth-child(14){left:18%;background:var(--white);animation-delay:.40s;}
+
+/* layout */
+.stage{position:relative;z-index:2;max-width:560px;margin:0 auto;padding:64px 24px 56px;text-align:center;}
+
+.eyebrow{
+  font-family:var(--font-body);font-weight:600;font-size:16px;
+  color:#FFE9EA;animation:rise .7s ease both;
+}
+
+.headline{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(2.1rem, 5vw + 1rem, 3.4rem);line-height:1.1;
+  color:#FFFFFF;margin-top:10px;animation:rise .8s .1s ease both;
+  text-shadow:0 2px 18px rgba(0,0,0,.35);
+}
+
+.subcopy{
+  font-family:var(--font-body);font-size:1rem;line-height:1.6;color:#F1E2E4;
+  max-width:420px;margin:16px auto 0;animation:rise .8s .2s ease both;
+}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+/* card */
+.card{
+  position:relative;z-index:1;background:var(--white);border-radius:18px;
+  padding:34px 30px;margin:36px auto 0;max-width:400px;text-align:center;
+  box-shadow:0 24px 55px rgba(15,3,8,.5);
+  animation:rise .9s .3s ease both;
+}
+.badge{
+  position:absolute;top:-18px;right:-14px;width:52px;height:52px;border-radius:50%;
+  background:var(--red-signal);display:flex;align-items:center;justify-content:center;
+  font-size:24px;box-shadow:0 6px 16px rgba(0,0,0,.3);
+  animation:badgeIn .5s .8s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes badgeIn{0%{transform:scale(0);opacity:0;}100%{transform:scale(1);opacity:1;}}
+
+input{
+  width:100%;padding:14px 16px;font-size:16px;font-family:var(--font-body);color:var(--ink);
+  border-radius:10px;border:1.5px solid #E4DEDA;margin-bottom:16px;outline:none;text-align:center;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+input:focus{border-color:var(--maroon-deep);box-shadow:0 0 0 4px rgba(110,20,35,.13);}
+input::placeholder{color:#9A9490;}
+
+button{
+  width:100%;padding:15px;border:none;border-radius:10px;cursor:pointer;
+  background:linear-gradient(135deg, var(--maroon-deep), #8A1B2E);color:#fff;
+  font-family:var(--font-body);font-weight:600;font-size:16px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+button:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(110,20,35,.35);}
+button:active{transform:translateY(0);}
+button:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none;}
+button:focus-visible, input:focus-visible{outline:2px solid var(--red-signal);outline-offset:2px;}
+
+.loader{
+  display:none;margin-top:16px;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--font-body);font-size:14px;color:var(--grey-warm);
+}
+.loader.show{display:flex;}
+.spinner{
+  width:14px;height:14px;border:2px solid rgba(110,20,35,.18);border-top-color:var(--maroon-deep);
+  border-radius:50%;display:inline-block;animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+#msg{margin-top:14px;text-align:center;font-weight:600;font-family:var(--font-body);font-size:15px;}
+.success{color:var(--success);}
+.error{color:var(--red-error);}
+
+/* destinations */
+.destinations{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:32px;animation:rise .9s .45s ease both;}
+.destinations span{
+  font-family:var(--font-body);font-size:13px;font-weight:500;
+  color:#FFF3F4;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+  padding:7px 14px;border-radius:999px;
+}
+
+.footer-note{margin-top:26px;font-family:var(--font-body);font-size:14px;font-weight:500;color:#F1DCDF;animation:rise .9s .55s ease both;}
+
+@media (max-width:480px){
+  .stage{padding:48px 18px 40px;}
+  .card{padding:28px 22px;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-photo" aria-hidden="true">
+  <img src="https://images.unsplash.com/photo-1744894203354-76df001b04e9?auto=format&fit=crop&w=1600&q=80" alt="">
+  <div class="bg-overlay"></div>
+</div>
+
+<div class="confetti" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<main class="stage">
+  <p class="eyebrow">🎉 Congratulations!</p>
+  <h1 class="headline">Get Ready for Thailand!</h1>
+  <p class="subcopy">Enter your Employee ID or Mobile Number to download your travel document.</p>
+
+  <section class="card">
+    <span class="badge" aria-hidden="true">🎉</span>
+
+    <input
+      id="input"
+      placeholder="Employee ID / Mobile Number"
+      autocomplete="off"
+    >
+    <button onclick="searchDoc()" id="btn">Download My Travel Document</button>
+
+    <div class="loader" id="loader"><span class="spinner"></span><span>Searching...</span></div>
+    <div id="msg"></div>
+  </section>
+
+  <div class="destinations">
+    <span>Bangkok</span>
+    <span>Phuket</span>
+    <span>Krabi</span>
+    <span>Chiang Mai</span>
+  </div>
+
+  <p class="footer-note">🎉 Have a safe and wonderful trip!</p>
+</main>
+
+<script>
+const API_URL="https://script.google.com/macros/s/AKfycbwVFXGXwlBGDM5Ke1z519CYikfeuKCmNvgO-c87vUsl8zcLYn5QIBiByure-wXaNPvG/exec";
+
+async function searchDoc(){
+  const value=document.getElementById("input").value.trim();
+  const msg=document.getElementById("msg");
+  const loader=document.getElementById("loader");
+  const btn=document.getElementById("btn");
+  msg.innerHTML="";
+  if(value===""){
+    msg.className="error";
+    msg.innerHTML="Please enter Employee ID or Mobile Number.";
+    return;
+  }
+  loader.classList.add("show");
+  btn.disabled=true;
+  try{
+    const response=await fetch(API_URL+"?input="+encodeURIComponent(value));
+    const data=await response.json();
+    loader.classList.remove("show");
+    btn.disabled=false;
+    if(data.status==="success"){
+      msg.className="success";
+      msg.innerHTML="Document found! Downloading...";
+      window.open(data.url,"_blank");
+    }else{
+      msg.className="error";
+      msg.innerHTML=data.message;
+    }
+  }catch(err){
+    loader.classList.remove("show");
+    btn.disabled=false;
+    msg.className="error";
+    msg.innerHTML="Unable to connect to server.";
+  }
+}
+</script>
+</body>
+</html>
