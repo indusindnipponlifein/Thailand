@@ -32,7 +32,7 @@ body{
 }
 
 .bg-photo{position:fixed;inset:0;z-index:0;overflow:hidden;background:var(--maroon-night);}
-.bg-photo img{width:100%;height:100%;object-fit:cover;object-position:center 65%;display:block;}
+.bg-photo img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;}
 .bg-overlay{
   position:absolute;inset:0;
   background:linear-gradient(180deg, rgba(74,15,28,.30) 0%, rgba(35,8,17,.45) 45%, rgba(20,4,9,.75) 100%);
@@ -58,44 +58,11 @@ body{
 .confetti span:nth-child(14){left:18%;background:var(--white);animation-delay:.40s;}
 
 /* layout */
-.stage{position:relative;z-index:2;max-width:560px;margin:0 auto;padding:64px 24px 56px;text-align:center;}
-
-.eyebrow{
-  font-family:var(--font-body);font-weight:600;font-size:16px;
-  color:#FFE9EA;animation:rise .7s ease both;
-}
-
-.headline{
-  margin-top:18px;animation:rise .8s .1s ease both;
-  display:flex;flex-direction:column;align-items:center;
-  background:rgba(74,15,28,.38);
-  backdrop-filter:blur(8px) saturate(130%);
-  -webkit-backdrop-filter:blur(8px) saturate(130%);
-  border-radius:18px;
-  padding:22px 26px;
-  box-shadow:0 14px 34px rgba(0,0,0,.35);
-}
-.headline .lead{
-  font-family:var(--font-body);font-weight:600;text-transform:uppercase;
-  letter-spacing:.2em;line-height:1.7;
-  font-size:clamp(1rem, 1.3vw + .65rem, 1.15rem);
-  color:#FBE4E6;text-shadow:0 2px 8px rgba(0,0,0,.5);
-}
-.headline .hero{
-  font-family:var(--font-body);font-weight:700;text-transform:uppercase;
-  font-size:clamp(2.9rem, 8vw + 1rem, 4.4rem);line-height:1.02;letter-spacing:.01em;
-  color:var(--red-signal);margin-top:6px;
-  text-shadow:0 3px 6px rgba(0,0,0,.6), 0 1px 0 rgba(0,0,0,.4);
-}
-.headline .tagline{
-  font-family:var(--font-body);font-weight:600;text-transform:uppercase;
-  letter-spacing:.17em;font-size:clamp(1.05rem, 1.6vw + .6rem, 1.25rem);
-  color:#FFFFFF;margin-top:10px;text-shadow:0 2px 8px rgba(0,0,0,.5);
-}
+.stage{position:relative;z-index:2;max-width:560px;margin:0 auto;padding:47vh 24px 44px;text-align:center;}
 
 .subcopy{
   font-family:var(--font-body);font-size:1rem;line-height:1.6;color:#F1E2E4;
-  max-width:420px;margin:16px auto 0;animation:rise .8s .2s ease both;
+  max-width:420px;margin:0 auto;animation:rise .8s ease both;
 }
 
 @keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
@@ -103,7 +70,7 @@ body{
 /* card */
 .card{
   position:relative;z-index:1;background:var(--white);border-radius:18px;
-  padding:34px 30px;margin:36px auto 0;max-width:400px;text-align:center;
+  padding:34px 30px;margin:28px auto 0;max-width:400px;text-align:center;
   box-shadow:0 24px 55px rgba(15,3,8,.5);
   animation:rise .9s .3s ease both;
 }
@@ -154,12 +121,11 @@ button:focus-visible, input:focus-visible{outline:2px solid var(--red-signal);ou
 .success{color:var(--success);}
 .error{color:var(--red-error);}
 
-.footer-note{margin-top:30px;font-family:var(--font-body);font-size:14px;font-weight:500;color:#F1DCDF;animation:rise .9s .45s ease both;}
+.footer-note{margin-top:22px;font-family:var(--font-body);font-size:14px;font-weight:500;color:#F1DCDF;animation:rise .9s .45s ease both;}
 
 @media (max-width:480px){
-  .stage{padding:48px 18px 40px;}
+  .stage{padding-left:18px;padding-right:18px;padding-bottom:32px;}
   .card{padding:28px 22px;}
-  .headline{padding:18px 18px;}
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -170,7 +136,7 @@ button:focus-visible, input:focus-visible{outline:2px solid var(--red-signal);ou
 <body>
 
 <div class="bg-photo" aria-hidden="true">
-  <img src="https://images.unsplash.com/photo-1744894203354-76df001b04e9?auto=format&fit=crop&w=1600&q=80" alt="">
+  <img src="https://i.postimg.cc/8PCY1yjZ/PPTapotrait.png" alt="">
   <div class="bg-overlay"></div>
 </div>
 
@@ -180,8 +146,6 @@ button:focus-visible, input:focus-visible{outline:2px solid var(--red-signal);ou
 </div>
 
 <main class="stage">
-  <p class="eyebrow">IndusInd Nippon Life Insurance Co. Ltd</p>
-  <h1 class="headline"><span class="lead">Welcome<br>To</span><span class="hero">Thailand</span><span class="tagline">Training Convention</span></h1>
   <p class="subcopy">Enter your details below to view your personalised experience</p>
 
   <section class="card">
